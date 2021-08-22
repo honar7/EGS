@@ -4,18 +4,22 @@ import egs.assignment.kourosh.entity.Users;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class GroupUserDetails implements UserDetails {
     private String userName;
     private String password;
     private boolean isActive;
     private List<GrantedAuthority> authorities;
 
+    public GroupUserDetails() {
+    }
 
     public  GroupUserDetails(Users users){
         this.userName = users.getUserName();

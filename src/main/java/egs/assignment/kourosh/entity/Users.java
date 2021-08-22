@@ -1,26 +1,29 @@
 package egs.assignment.kourosh.entity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import lombok.*;
 
-@Entity
+import javax.persistence.*;
+import java.util.Set;
+
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-
+//@Getter
+//@Setter
+@Entity
 @Table(name="USER_AUTH_TBL")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Users {
     @Id
-    @GeneratedValue
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String userName;
     private String password;
     private boolean isActive;
     private String roles;
+
+    @OneToMany(mappedBy = "user")
+    Set<ProductRating> ratings;
+
 }
