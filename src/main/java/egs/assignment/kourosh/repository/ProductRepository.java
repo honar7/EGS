@@ -13,7 +13,5 @@ import java.util.stream.Stream;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     Optional<Product> findByName(String name);
-    Stream<Product> findByTitle(String title);
-    @Async
-    Future<List<Product>> findByTitleAsync(String title);
+
 }

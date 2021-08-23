@@ -2,7 +2,6 @@ package egs.assignment.kourosh.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Set;
 
 
 @Data
@@ -23,7 +22,7 @@ public class Users {
     private boolean isActive;
     private String roles;
 
-    @OneToMany(mappedBy = "user")
-    Set<ProductRating> ratings;
+//    @OneToMany(mappedBy = "user")
+//    Set<ProductRating> ratings;
 
 }

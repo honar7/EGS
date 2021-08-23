@@ -2,17 +2,18 @@ package egs.assignment.kourosh.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @ToString
 @Entity(name = "PRODUCT_RATING")
 public class ProductRating {
+    public ProductRating() {
+    }
+
     @EmbeddedId
     private ProductRatingKey id;
 

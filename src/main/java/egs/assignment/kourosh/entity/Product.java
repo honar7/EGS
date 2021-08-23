@@ -6,24 +6,22 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.Set;
+
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name="PRODUCT")
+@Table(name="product")
 public class Product {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
-    private BigDecimal price;
+    private String description;
+    private Double price;
     private int rate;
-
-    @OneToMany(mappedBy = "productId")
-    Set<ProductRating> ratings;
+    @Column(name = "category_id")
+    private long categoryId;
 }

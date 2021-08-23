@@ -3,7 +3,10 @@ package egs.assignment.kourosh.service;
 import egs.assignment.kourosh.common.UserConstant;
 import egs.assignment.kourosh.entity.Users;
 import egs.assignment.kourosh.repository.UserRepository;
+import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,31 +33,38 @@ public class UserService {
         userRepository.save(user);
         return  "Hello "+ user.getUserName();
     }
-//
-//    public Users findById(long userId){
-//        return  userRepository.findById(userId).get();
-//    }
-//
-//    public List<Users> getUsers(){
-//        return  userRepository.findAll();
-//    }
-//
+
+    public Users findById(long userId){
+        return  userRepository.findById(userId).get();
+    }
+
+    public List<Users> getUsers(){
+        return  userRepository.findAll();
+    }
+
 //    public Users getLoggedInUser(Principal principal){
 //        return  userRepository.findByUserName(principal.getName()).get();
 //    }
-//
-//    public String giveAccessToUser(@PathVariable long userId, @PathVariable String userRole, Principal principal){
+
+//    public String giveAccessToUser(@PathVariable long userId, @PathVariable String userRole){
 //        Users user = userRepository.findById(userId).get();
-//        List<String> activeRoles = getRolesCurrentUser(principal);
-//        String newRoles = "";
+//        String activeRoles = ((SimpleGrantedAuthority) SecurityContextHolder.getContext().getAuthentication().getAuthorities()).getRole();
+//        String newRoles = "ROLE_ADMIN";
 //        if(activeRoles.contains(userRole)){
 //            newRoles = user.getRoles() + "," + userRole;
 //            user.setRoles(newRoles);
 //        }
 //        userRepository.save(user);
-//        return  "Hello " + user.getUserName() + "New Roles assigned to you by " + principal.getName();
+//        return  "Hello " + user.getUserName() + "New Roles assigned to you by ";
+////                + SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //    }
 
+
+//    public String getRolesCurrentUser(){
+//        Collection authorities;
+//        authorities = (Collection<SimpleGrantedAuthority>)    SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+//        return  authorities.getRole();
+//    }
 
 
 }

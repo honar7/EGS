@@ -34,7 +34,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
        http.csrf().disable();
-       http.authorizeRequests().antMatchers("/user/join").permitAll()
+       http.authorizeRequests().antMatchers("/index.html").permitAll()
+               .antMatchers("/user/join").hasRole("ADMIN")
+               .antMatchers("/product/").hasRole("ADMIN")
                .and().authorizeRequests().antMatchers("/user/**").authenticated()
                .and().httpBasic()
                .and().formLogin();
@@ -42,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){
-        return  new BCryptPasswordEncoder(10);
+        return  new BCryptPasswordEncoder();
     }
 
     @Bean
